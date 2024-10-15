@@ -1,3 +1,10 @@
+export interface NavMenu {
+    id: number;
+    label: string;
+    searchValue: string;
+    isActive: boolean;
+}
+
 export interface ImageData {
     alt_description: string;
     alternative_slugs: {

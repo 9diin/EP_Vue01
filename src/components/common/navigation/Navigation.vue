@@ -1,106 +1,108 @@
 <template>
     <nav class="nav">
         <div class="nav__container">
-            <RouterLink v-for="menu in menuItems" :to="menu.path" :key="menu.id" class="h-full py-2 px-3 rounded-sm text-sm font-medium hover:bg-neutral-50">{{ menu.label }}</RouterLink>
+            <Button v-for="menu in menuItems" :key="menu.id" variant="ghost" class="h-full py-2 px-3 rounded-sm text-sm font-medium hover:bg-neutral-50" :class="{ 'bg-neutral-100': menu.isActive }" @click="handleMenuClick(menu)">
+                {{ menu.label }}
+            </Button>
         </div>
     </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { RouterLink } from "vue-router";
+import { Button } from "@/components/ui/button";
+import { NavMenu } from "@/types";
 
 export default defineComponent({
     name: "CommonNavigation",
+    components: { Button },
+    emits: ["send-event"],
     data() {
         return {
             menuItems: [
                 {
                     id: 1,
-                    path: "/search/edit",
                     label: "보도/편집 전용",
                     searchValue: "edit",
                     isActive: false,
                 },
                 {
                     id: 2,
-                    path: "/search/following",
                     label: "팔로잉",
                     searchValue: "following",
                     isActive: false,
                 },
                 {
                     id: 3,
-                    path: "/search/photoPlus",
                     label: "Unsplash Photo+",
                     searchValue: "photo",
                     isActive: false,
                 },
                 {
                     id: 4,
-                    path: "/search/oneColor",
                     label: "단색",
                     searchValue: "one color",
                     isActive: false,
                 },
                 {
                     id: 5,
-                    path: "/search/3dRender",
                     label: "3D 렌더링",
                     searchValue: "3d rendering",
                     isActive: false,
                 },
                 {
                     id: 6,
-                    path: "/search/nature",
                     label: "자연",
                     searchValue: "nature",
                     isActive: false,
                 },
                 {
                     id: 7,
-                    path: "/search/texture",
                     label: "텍스쳐 및 패턴",
                     searchValue: "texture",
                     isActive: false,
                 },
                 {
                     id: 8,
-                    path: "/search/interior",
                     label: "인테리어",
                     searchValue: "interior",
                     isActive: false,
                 },
                 {
                     id: 9,
-                    path: "/search/film",
                     label: "필름",
                     searchValue: "film",
                     isActive: false,
                 },
                 {
                     id: 10,
-                    path: "/search/experimental",
                     label: "실험적인",
                     searchValue: "experimental",
                     isActive: false,
                 },
                 {
                     id: 11,
-                    path: "/search/travel",
                     label: "여행",
                     searchValue: "travel",
                     isActive: false,
                 },
                 {
                     id: 12,
-                    path: "/search/sports",
                     label: "스포츠",
                     searchValue: "sports",
                     isActive: false,
                 },
-            ],
+            ] as NavMenu[],
         };
+    },
+    methods: {
+        handleMenuClick(menu: NavMenu) {
+            this.menuItems.forEach((item: NavMenu) => {
+                if (item.id === menu.id) item.isActive = true;
+                else item.isActive = false;
+            });
+            this.$emit("send-event", menu.searchValue);
+        },
     },
 });
 </script>

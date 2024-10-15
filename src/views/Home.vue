@@ -21,7 +21,7 @@
                     </div>
                     <div class="flex items-center gap-1 text-sm">
                         <Heart class="h-[14px] w-[14px] mt-[2px] text-rose-600" fill="#e11d48" />
-                        {{ image.likes }}
+                        {{ formatNumberWithCommas(image.likes) }}
                     </div>
                 </div>
             </div>
@@ -30,8 +30,8 @@
 </template>
 
 <script lang="ts">
-import { useStore } from "@/store/index";
 import dayjs from "dayjs";
+import { useStore } from "@/store/index";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Heart, Pin } from "lucide-vue-next";
 
@@ -54,6 +54,9 @@ export default {
     methods: {
         formatDate(date: string) {
             return dayjs(date).format("YYYY-MM-DD"); // 포맷 함수
+        },
+        formatNumberWithCommas(count: number) {
+            return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
     },
     mounted() {

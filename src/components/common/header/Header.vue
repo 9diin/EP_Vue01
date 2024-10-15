@@ -8,10 +8,10 @@
             <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">Do it!</h3>
         </div>
         <div class="header__child">
-            <Button variant="secondary">
+            <Button variant="secondary" @click="moveToBookmarkPage">
                 <BookMarked class="h-5 w-5 mr-1" />
-                북마크</Button
-            >
+                북마크
+            </Button>
             <Separator orientation="vertical" class="h-10" />
             <div class="flex items-center gap-2">
                 <Avatar>
@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -40,6 +41,16 @@ export default defineComponent({
         Button,
         BookMarked,
         Separator,
+    },
+    data() {
+        return {
+            router: useRouter(),
+        };
+    },
+    methods: {
+        moveToBookmarkPage() {
+            this.router.push("/bookmarks"); // 북마크 페이지로 이동
+        },
     },
 });
 </script>

@@ -4,7 +4,7 @@
         <CommonHeader />
 
         <!-- 네비게이션 메뉴 -->
-        <CommonNavigation />
+        <CommonNavigation @send-event="clickMenu" />
 
         <!-- 검색 창 -->
         <div class="page__wallpaper">
@@ -65,6 +65,10 @@ export default {
         handleSearch() {
             if (this.searchValue === "") this.store.setSearchValue(this.prevSearchValue);
             else this.store.setSearchValue(this.searchValue);
+        },
+        clickMenu(event: string) {
+            this.changeSearchValue(event);
+            this.handleSearch();
         },
     },
 };
