@@ -8,7 +8,7 @@
                 <Skeleton class="h-4 w-[200px]" />
             </div>
         </div> -->
-        <ImageCard v-for="image in images" :key="image.id" :data="image" />
+        <ImageCard v-for="image in images" :key="image.id" :image="image" />
     </div>
 </template>
 
@@ -16,14 +16,11 @@
 import { useStore } from "@/store/index";
 import { ImageCard } from "@/components/common";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Heart, Pin } from "lucide-vue-next";
 
 export default {
     components: {
         ImageCard,
         Skeleton,
-        Heart,
-        Pin,
     },
     data() {
         return {
