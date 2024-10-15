@@ -34,7 +34,7 @@
                             </div>
                             <div class="flex items-start">
                                 <AlignLeft class="h-4 w-4 min-w-4 mr-1" />
-                                <small class="text-sm font-medium leading-4">{{ image.description }}</small>
+                                <small class="text-sm font-medium leading-4">{{ image.description ? image.description : "등록된 묘사 및 설명글이 없습니다." }}</small>
                             </div>
                         </div>
                         <div class="flex items-center justify-end w-full gap-4">
