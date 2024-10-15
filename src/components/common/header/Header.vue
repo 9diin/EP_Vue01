@@ -8,7 +8,10 @@
             <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">Do it!</h3>
         </div>
         <div class="header__child">
-            <Button variant="secondary">북마크</Button>
+            <Button variant="secondary">
+                <BookMarked class="h-5 w-5 mr-1" />
+                북마크</Button
+            >
             <Separator orientation="vertical" class="h-10" />
             <div class="flex items-center gap-2">
                 <Avatar>
@@ -26,6 +29,7 @@ import { defineComponent } from "vue";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { BookMarked } from "lucide-vue-next";
 
 export default defineComponent({
     name: "CommonHeader",
@@ -34,6 +38,7 @@ export default defineComponent({
         AvatarFallback,
         AvatarImage,
         Button,
+        BookMarked,
         Separator,
     },
 });

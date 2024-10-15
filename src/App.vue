@@ -40,9 +40,6 @@ export default {
         CommonPagination,
         SearchBar,
     },
-    data() {
-        return {};
-    },
 };
 </script>
 
