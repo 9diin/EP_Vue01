@@ -14,7 +14,7 @@
             </template>
 
             <PaginationNext @click="changePage(currentPage + 1)" />
-            <PaginationLast @click="changePage(totalPages)" />
+            <PaginationLast @click="changePage(totalPages > 34 ? 34 : totalPages)" />
         </PaginationList>
     </Pagination>
 </template>
