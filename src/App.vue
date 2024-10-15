@@ -15,7 +15,7 @@
                     <h4 class="scroll-m-20 text-md text-white font-semibold tracking-tight">인터넷 시각자료 출처입니다.</h4>
                     <h4 class="scroll-m-20 text-md text-white font-semibold tracking-tight">모든 지역에 있는 크리에이터들의 지원을 받습니다.</h4>
                 </div>
-                <SearchBar />
+                <SearchBar @update:modelValue="changeSearchValue" @keydown.enter="handleSearch" />
             </div>
         </div>
 
@@ -24,7 +24,7 @@
 
         <!-- 푸터 -->
         <footer class="page__footer">
-            <CommonPagination />
+            <CommonPagination :total="total" :totalPages="totalPages" />
         </footer>
     </div>
 </template>
@@ -32,6 +32,7 @@
 <script lang="ts">
 import { CommonHeader, CommonNavigation, CommonPagination } from "@/components/common/index";
 import { SearchBar } from "@/components/ui/search-bar";
+import { useStore } from "@/store/index";
 
 export default {
     components: {
@@ -39,6 +40,32 @@ export default {
         CommonNavigation,
         CommonPagination,
         SearchBar,
+    },
+    data() {
+        return {
+            store: useStore(),
+            searchValue: "",
+        };
+    },
+    computed: {
+        prevSearchValue() {
+            return this.store.searchValue;
+        },
+        total() {
+            return this.store.total;
+        },
+        totalPages() {
+            return this.store.totalPages;
+        },
+    },
+    methods: {
+        changeSearchValue(event: string | number) {
+            this.searchValue = String(event);
+        },
+        handleSearch() {
+            if (this.searchValue === "") this.store.setSearchValue(this.prevSearchValue);
+            else this.store.setSearchValue(this.searchValue);
+        },
     },
 };
 </script>

@@ -11,7 +11,7 @@
         <div v-for="image in images" :key="image.id" class="flex flex-col justify-between space-y-3 w-64 h-64 cursor-pointer">
             <div class="flex flex-col gap-3">
                 <img :src="image.urls.small" alt="" class="h-40 w-full rounded-xl object-cover" />
-                <small className="w-full gap-1 text-sm font-medium"> {{ image.alt_description }} </small>
+                <small className="w-full gap-1 text-sm font-medium line-clamp-2"> {{ image.alt_description }} </small>
             </div>
             <div class="space-y-2">
                 <div class="flex items-center justify-between w-full">
@@ -26,18 +26,13 @@
                 </div>
             </div>
         </div>
-        <!-- 푸터 -->
-        <footer class="layout__footer">
-            <CommonPagination />
-        </footer>
     </div>
 </template>
 
 <script lang="ts">
-import axios from "axios";
+import { useStore } from "@/store/index";
 import dayjs from "dayjs";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ImageData } from "@/types";
 import { Heart, Pin } from "lucide-vue-next";
 
 export default {
@@ -48,34 +43,21 @@ export default {
     },
     data() {
         return {
-            searchValue: "korea", // default 검색어
-            images: [] as ImageData[], // 이미지 값, 타입 지정
-            page: 1,
-            perPage: 30, // Unsplash API에서는 페이지당 검색되는 이미지 수는 30개가 최대
-            totalPage: 1,
+            store: useStore(),
         };
     },
-    methods: {
-        async fetchApi() {
-            const ACCESS_KEY = "zmM90WxmUnePFx000mZFc__ZXqzzMXteG-JLprmIYfE";
-            const API_URL = `https://api.unsplash.com/search/photos?page=${this.page}&query=${this.searchValue}&per_page=${this.perPage}&client_id=${ACCESS_KEY}`;
-
-            try {
-                const res = await axios.get(API_URL);
-                console.log(res);
-
-                this.images = res.data.results;
-                this.totalPage = res.data.total_pages;
-            } catch (error) {
-                console.log(error);
-            }
+    computed: {
+        images() {
+            return this.store.images;
         },
+    },
+    methods: {
         formatDate(date: string) {
             return dayjs(date).format("YYYY-MM-DD"); // 포맷 함수
         },
     },
     mounted() {
-        this.fetchApi();
+        this.store.fetchApi(); // 초기 데이터 로드
     },
 };
 </script>
