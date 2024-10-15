@@ -12,6 +12,7 @@
 import { defineComponent } from "vue";
 import { Button } from "@/components/ui/button";
 import { NavMenu } from "@/types";
+import { useStore } from "@/store";
 
 export default defineComponent({
     name: "CommonNavigation",
@@ -93,6 +94,7 @@ export default defineComponent({
                     isActive: false,
                 },
             ] as NavMenu[],
+            store: useStore(),
         };
     },
     methods: {
@@ -102,6 +104,7 @@ export default defineComponent({
                 else item.isActive = false;
             });
             this.$emit("send-event", menu.searchValue);
+            this.store.setPage(1);
         },
     },
 });
