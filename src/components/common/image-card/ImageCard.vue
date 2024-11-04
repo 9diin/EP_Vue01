@@ -73,17 +73,11 @@ import dayjs from "dayjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
-import { useStore } from "@/store/index";
 import { Heart, FolderOpen, Pin, ClipboardPenLine, AlignLeft } from "lucide-vue-next";
 
 export default {
     props: ["image"],
     components: { Avatar, AvatarFallback, AvatarImage, Button, FolderOpen, Heart, Pin, ClipboardPenLine, AlignLeft, Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose },
-    data() {
-        return {
-            store: useStore(),
-        };
-    },
     methods: {
         formatDate(date: string) {
             return dayjs(date).format("YYYY-MM-DD");

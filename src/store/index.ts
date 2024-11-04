@@ -22,6 +22,7 @@ export const useStore = defineStore("main", {
                 this.images = res.data.results;
                 this.total = res.data.total;
                 this.totalPages = res.data.total_pages;
+
                 console.log(res);
             } catch (error) {
                 console.log(error);
