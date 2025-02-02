@@ -1,26 +1,16 @@
 <template>
     <div class="layout">
-        <!-- 로딩 중일 경우, 보이는 Skeleton UI -->
-        <!-- <div v-for="image in images" :key="image.id" class="flex flex-col space-y-3">
-            <Skeleton class="h-[150px] w-[250px] rounded-xl" />
-            <div class="space-y-2">
-                <Skeleton class="h-4 w-[250px]" />
-                <Skeleton class="h-4 w-[200px]" />
-            </div>
-        </div> -->
         <ImageCard v-for="image in images" :key="image.id" :image="image" />
     </div>
 </template>
 
 <script lang="ts">
-import { useStore } from "@/store/index";
+import { useStore } from "@/stores/index";
 import { ImageCard } from "@/components/common";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export default {
     components: {
         ImageCard,
-        Skeleton,
     },
     data() {
         return {

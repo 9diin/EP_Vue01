@@ -21,9 +21,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Pagination, PaginationEllipsis, PaginationFirst, PaginationLast, PaginationList, PaginationListItem, PaginationNext, PaginationPrev } from "@/components/ui/pagination";
 import { Button } from "@/components/ui/button";
-import { useStore } from "@/store/index";
+import { Pagination, PaginationEllipsis, PaginationFirst, PaginationLast, PaginationList, PaginationListItem, PaginationNext, PaginationPrev } from "@/components/ui/pagination";
+import { useStore } from "@/stores/index";
 
 export default defineComponent({
     props: {

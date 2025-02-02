@@ -1,7 +1,14 @@
 <template>
     <nav class="nav">
         <div class="nav__container">
-            <Button v-for="menu in menuItems" :key="menu.id" variant="ghost" class="h-full py-2 px-3 rounded-sm text-sm font-medium hover:bg-neutral-50" :class="{ 'bg-neutral-100': menu.isActive }" @click="handleMenuClick(menu)">
+            <Button
+                v-for="menu in menuItems"
+                :key="menu.id"
+                variant="ghost"
+                class="h-full py-2 px-3 rounded-sm text-sm font-medium hover:bg-neutral-50"
+                :class="{ 'bg-neutral-100': menu.isActive }"
+                @click="handleMenuClick(menu)"
+            >
                 {{ menu.label }}
             </Button>
         </div>
@@ -12,12 +19,11 @@
 import { defineComponent } from "vue";
 import { Button } from "@/components/ui/button";
 import { NavMenu } from "@/types";
-import { useStore } from "@/store";
+import { useStore } from "@/stores";
 
 export default defineComponent({
     name: "CommonNavigation",
     components: { Button },
-    emits: ["send-event"],
     data() {
         return {
             menuItems: [
@@ -97,6 +103,8 @@ export default defineComponent({
             store: useStore(),
         };
     },
+    emits: ["send-event"],
+
     methods: {
         handleMenuClick(menu: NavMenu) {
             this.menuItems.forEach((item: NavMenu) => {

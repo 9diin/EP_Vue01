@@ -32,7 +32,7 @@
 <script lang="ts">
 import { CommonHeader, CommonNavigation, CommonPagination } from "@/components/common/index";
 import { SearchBar } from "@/components/ui/search-bar";
-import { useStore } from "@/store/index";
+import { useStore } from "@/stores/index";
 
 export default {
     components: {
